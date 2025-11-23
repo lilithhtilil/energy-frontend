@@ -15,36 +15,41 @@
 <div class="container vertical">
   <label>
     Calculate the optimal time window for charging the vehicle to maximize<br> the use of clean energy for
-    <select name="hour" id="hour-select" class="select">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
+    <select name="hour" id="hour-select" class="select" [(ngModel)]="timeFrame">
+      <option [value]="1">1</option>
+      <option [value]="2">2</option>
+      <option [value]="3">3</option>
+      <option [value]="4">4</option>
+      <option [value]="5">5</option>
+      <option [value]="6">6</option>
     </select>
     h.
   </label>
   <br><br>
-  <button class="submit-button" id="calculate-button">
+  <button class="submit-button" (click)="onCalculate()">
     Calculate
   </button>
 </div>
 <!--Response from form-->
-<div class="center-text" style="padding: 70px;">
-  <p>optimal time window for 3 h charging</p>
-  <div class="container">
-    <div class="center-text" style="margin: 5px">
-      <p>start</p>
-      <p>12/11/2025<br>
-        12:30</p>
+@if (chargingInfo) {
+  <div class="center-text" style="padding: 70px;">
+    <p>optimal time window for {{chargingInfo.timeFrameHours}}h charging</p>
+    <div class="container">
+      <div class="center-text" style="margin: 5px">
+        <p>start</p>
+        <p>{{chargingInfo.startDate}}<br>
+          {{chargingInfo.startTime}}</p>
+      </div>
+      <p style="margin: 10px">-</p>
+      <div class="center-text" style="margin: 5px">
+        <p>finish</p>
+        <p>{{chargingInfo.endDate}}<br>
+          {{chargingInfo.endTime}}</p>
+      </div>
     </div>
-    <p style="margin: 10px">-</p>
-    <div class="center-text" style="margin: 5px">
-      <p>finish</p>
-      <p>12/11/2025<br>
-        15:30</p>
-    </div>
+    <p>{{chargingInfo.cleanEnergyPercent}}% Clean energy used</p>
   </div>
-  <p>28% Clean energy used</p>
-</div>
+} @else {
+  <br>
+  <br>
+}

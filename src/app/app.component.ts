@@ -9,6 +9,8 @@ import { EnergyMix } from "./energy-mix";
 })
 export class AppComponent implements OnInit {
   days: EnergyMix[] | null = null;
+  chargingInfo: ChargingInfo | null = null;
+  timeFrame: number = 1;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -34,6 +36,40 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  protected onCalculate() {
+    this.httpClient.get<ChargingInfoDto>("/api/charging-info", {
+      params: {
+        timeFrame: this.timeFrame,
+      }
+    }).subscribe(result => {
+      const startDateTime = new Date(Date.parse(result.startDateTime));
+      const endDateTime = new Date(Date.parse(result.endDateTime));
+      this.chargingInfo = <ChargingInfo> {
+        startDate: startDateTime.toLocaleDateString(),
+        startTime: `${startDateTime.getHours().toString().padStart(2, '0')}:${startDateTime.getMinutes().toString().padStart(2, '0')}`,
+        endDate: endDateTime.toLocaleDateString(),
+        endTime: `${endDateTime.getHours().toString().padStart(2, '0')}:${endDateTime.getMinutes().toString().padStart(2, '0')}`,
+        timeFrameHours: this.timeFrame,
+        cleanEnergyPercent: Math.round(result.avgCleanEnergy * 100),
+      };
+    });
+  }
+}
+
+interface ChargingInfo {
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
+  timeFrameHours: number;
+  cleanEnergyPercent: number;
+}
+
+interface ChargingInfoDto {
+  startDateTime: string;
+  endDateTime: string;
+  avgCleanEnergy: number;
 }
 
 interface EnergyMixDto {

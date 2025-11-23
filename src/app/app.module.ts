@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { provideHttpClient } from "@angular/common/http";
 import { DailyMixComponent } from './daily-mix/daily-mix.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { DailyMixComponent } from './daily-mix/daily-mix.component';
   ],
   imports: [
     BrowserModule,
-    NgxChartsModule
+    NgxChartsModule,
+    FormsModule
   ],
   providers: [
     provideHttpClient(),
