@@ -1,6 +1,74 @@
-<p>Hello!</p>
-<ngx-charts-pie-chart
-  [view]="[200,200]"
-  [results]="energyMix"
-  [doughnut]="true">
-</ngx-charts-pie-chart>
+<h3 class="center-text" >United Kingdom’s Energy mix</h3>
+<div>
+  <div class="container vertical">
+    <h3>Today</h3>
+    <p>2025-18-11</p>
+    <ngx-charts-pie-chart
+      [view]="[600,400]"
+      [results]="energyMix"
+      [legend]="true"
+      [doughnut]="true">
+    </ngx-charts-pie-chart>
+    <p>Clean Energy 20%</p>
+  </div>
+  <div class="border">
+    <h4 class="center-text">Future</h4>
+    <div class="container">
+      <div class="future-chart">
+        <p>2025-18-12</p>
+        <ngx-charts-pie-chart
+          [view]="[250,250]"
+          [results]="energyMix"
+          [doughnut]="true">
+        </ngx-charts-pie-chart>
+        <p>Clean Energy 20%</p>
+      </div>
+      <div class="future-chart">
+        <p>2025-18-12</p>
+        <ngx-charts-pie-chart
+          [view]="[250,250]"
+          [results]="energyMix"
+          [doughnut]="true">
+        </ngx-charts-pie-chart>
+        <p>Clean Energy 20%</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--This is form for calculation a time window for charging vehicle-->
+<div class="container vertical">
+  <label>
+    Calculate the optimal time window for charging the vehicle to maximize<br> the use of clean energy for
+    <select name="hour" id="hour-select" class="select">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    h.
+  </label>
+  <br><br>
+  <button class="submit-button" id="calculate-button">
+    Calculate
+  </button>
+</div>
+<!--Response from form-->
+<div class="center-text" style="padding: 70px;">
+  <p>optimal time window for 3 h charging</p>
+  <div class="container">
+    <div class="center-text" style="margin: 5px">
+      <p>start</p>
+      <p>12/11/2025<br>
+        12:30</p>
+    </div>
+    <p style="margin: 10px">-</p>
+    <div class="center-text" style="margin: 5px">
+      <p>finish</p>
+      <p>12/11/2025<br>
+        15:30</p>
+    </div>
+  </div>
+  <p>28% Clean energy used</p>
+</div>
