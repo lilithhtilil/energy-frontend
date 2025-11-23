@@ -1,15 +1,16 @@
 @if (energyMix != null) {
   @if (title) {
-    <h3>{{title}}</h3>
+    <p>{{title}}</p>
   }
   <p>{{energyMix.date}}</p>
   <ngx-charts-pie-chart
+    [scheme]="colorScheme"
     [view]="size"
     [results]="energyMix.chartData"
     [legend]="showLegend"
     [doughnut]="true">
   </ngx-charts-pie-chart>
-  <p>Clean Energy {{Math.round(energyMix.cleanEnergy)}}%</p>
+  <p>Clean Energy <span style="color: #B6CF96">{{Math.round(energyMix.cleanEnergy)}}%</span></p>
 } @else {
   @if (title) {
     <h3>{{title}}</h3>

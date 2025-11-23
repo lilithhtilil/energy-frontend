@@ -4,6 +4,16 @@
   text-align: center;
 }
 
+.text-s-c{
+  letter-spacing: -1px;
+  font-size: 20px;
+  color: #A39F9F;
+}
+
+.color-text-green{
+  color: #B6CF96;
+}
+
 .future-chart{
   margin-right: 30px;
   margin-left: 30px;

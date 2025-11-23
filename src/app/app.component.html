@@ -1,18 +1,46 @@
-<h3 class="center-text" >United Kingdom’s Energy mix</h3>
+<h3 class="center-text text-s-c" >United Kingdom’s <span class="color-text-green">Energy</span> mix</h3>
 <div>
-  <app-daily-mix [title]="'Today'" [energyMix]="days ? days[0] : null"
-  [size]="[600, 400]"
-  [showLegend]="true"></app-daily-mix>
   <div class="section">
-    <h4 class="center-text">Future</h4>
+    <app-daily-mix
+      [title]="'Today'" [energyMix]="days ? days[0] : null"
+      [size]="[600, 400]"
+      [showLegend]="true">
+    </app-daily-mix>
+  </div>
+
+  <div class="section">
+    <p class="center-text text-s-c">Future</p>
     <div class="container">
       <app-daily-mix [energyMix]="days ? days[1] : null" [size]="[250, 250]"></app-daily-mix>
       <app-daily-mix [energyMix]="days ? days[2] : null" [size]="[250, 250]"></app-daily-mix>
     </div>
   </div>
 </div>
+<!--Response from form-->
+@if (chargingInfo) {
+  <div class="center-text" style="padding: 70px;">
+    <p class="text-s-c">optimal time window for <span style="color: #666666">{{chargingInfo.timeFrameHours}}</span> h charging</p>
+    <div class="container text-s-c">
+      <div class="center-text" style="margin: 5px">
+        <p>start</p>
+        <p style="color: #666666">{{chargingInfo.startDate}}<br>
+          {{chargingInfo.startTime}}</p>
+      </div>
+      <p style="margin: 10px">-</p>
+      <div class="center-text" style="margin: 5px">
+        <p>finish</p>
+        <p style="color: #666666">{{chargingInfo.endDate}}<br>
+          {{chargingInfo.endTime}}</p>
+      </div>
+    </div>
+    <p class="text-s-c"><span class="color-text-green">{{chargingInfo.cleanEnergyPercent}}</span>% Clean energy used</p>
+  </div>
+} @else {
+  <br>
+  <br>
+}
 <!--This is form for calculation a time window for charging vehicle-->
-<div class="container vertical">
+<div class="container vertical text-s-c">
   <label>
     Calculate the optimal time window for charging the vehicle to maximize<br> the use of clean energy for
     <select name="hour" id="hour-select" class="select" [(ngModel)]="timeFrame">
@@ -30,26 +58,6 @@
     Calculate
   </button>
 </div>
-<!--Response from form-->
-@if (chargingInfo) {
-  <div class="center-text" style="padding: 70px;">
-    <p>optimal time window for {{chargingInfo.timeFrameHours}}h charging</p>
-    <div class="container">
-      <div class="center-text" style="margin: 5px">
-        <p>start</p>
-        <p>{{chargingInfo.startDate}}<br>
-          {{chargingInfo.startTime}}</p>
-      </div>
-      <p style="margin: 10px">-</p>
-      <div class="center-text" style="margin: 5px">
-        <p>finish</p>
-        <p>{{chargingInfo.endDate}}<br>
-          {{chargingInfo.endTime}}</p>
-      </div>
-    </div>
-    <p>{{chargingInfo.cleanEnergyPercent}}% Clean energy used</p>
-  </div>
-} @else {
-  <br>
-  <br>
-}
+<footer style="margin-bottom: 100px;">
+</footer>
+
