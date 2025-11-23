@@ -1,51 +1,13 @@
 <h3 class="center-text" >United Kingdom’s Energy mix</h3>
 <div>
-  @if (energyMix != null) {
-    <div class="container vertical">
-      <h3>Today</h3>
-      <p>2025-18-11</p>
-      <ngx-charts-pie-chart
-        [view]="[600,400]"
-        [results]="energyMix.chartData"
-        [legend]="true"
-        [doughnut]="true">
-      </ngx-charts-pie-chart>
-      <p>Clean Energy {{Math.round(energyMix.cleanEnergy)}}%</p>
-    </div>
-  } @else {
-    <div class="container vertical">
-      <h3>Today</h3>
-      <p>Loading...</p>
-      <ngx-charts-pie-chart
-        [view]="[600,400]"
-        [results]="loadingData"
-        [legend]="true"
-        [doughnut]="true">
-      </ngx-charts-pie-chart>
-      <p>Loading...</p>
-    </div>
-  }
+  <app-daily-mix [title]="'Today'" [energyMix]="days ? days[0] : null"
+  [size]="[600, 400]"
+  [showLegend]="true"></app-daily-mix>
   <div class="border">
     <h4 class="center-text">Future</h4>
     <div class="container">
-      <div class="future-chart">
-        <p>2025-18-12</p>
-        <ngx-charts-pie-chart
-          [view]="[250,250]"
-          [results]="energyMix?.chartData"
-          [doughnut]="true">
-        </ngx-charts-pie-chart>
-        <p>Clean Energy 20%</p>
-      </div>
-      <div class="future-chart">
-        <p>2025-18-12</p>
-        <ngx-charts-pie-chart
-          [view]="[250,250]"
-          [results]="energyMix?.chartData"
-          [doughnut]="true">
-        </ngx-charts-pie-chart>
-        <p>Clean Energy 20%</p>
-      </div>
+      <app-daily-mix [energyMix]="days ? days[1] : null" [size]="[250, 250]"></app-daily-mix>
+      <app-daily-mix [energyMix]="days ? days[2] : null" [size]="[250, 250]"></app-daily-mix>
     </div>
   </div>
 </div>

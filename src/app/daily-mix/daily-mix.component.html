@@ -1,0 +1,25 @@
+@if (energyMix != null) {
+  @if (title) {
+    <h3>{{title}}</h3>
+  }
+  <p>{{energyMix.date}}</p>
+  <ngx-charts-pie-chart
+    [view]="size"
+    [results]="energyMix.chartData"
+    [legend]="showLegend"
+    [doughnut]="true">
+  </ngx-charts-pie-chart>
+  <p>Clean Energy {{Math.round(energyMix.cleanEnergy)}}%</p>
+} @else {
+  @if (title) {
+    <h3>{{title}}</h3>
+  }
+  <p>Loading...</p>
+  <ngx-charts-pie-chart
+    [view]="size"
+    [results]="loadingData"
+    [legend]="showLegend"
+    [doughnut]="true">
+  </ngx-charts-pie-chart>
+  <p>Loading...</p>
+}
