@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { provideHttpClient } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     BrowserModule,
     NgxChartsModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
