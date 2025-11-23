@@ -1,6 +1,7 @@
 {
   "/api": {
     "target": "https://energy-backend-aaph.onrender.com",
-    "secure": false
+    "secure": true,
+    "changeOrigin": true
   }
 }
